@@ -9,7 +9,7 @@ $resultuser = mysqli_query($conn, $sqluser) or die('ㄹㅇㅋㅋ');
 
 while ($row = mysqli_fetch_assoc($resultuser))
 {
-	$sql = "SELECT * FROM problems ORDER BY id ASC";
+	$sql = "SELECT * FROM problems WHERE featured=1 ORDER BY id ASC";
 	$result = mysqli_query($conn, $sql) or die('?ㅋㅋ');
 	
 	$gold = 0;
@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_assoc($resultuser))
 	$email = $row['email'];
 	while ($row2 = mysqli_fetch_assoc($result))
 	{
-		if ($row['email'] != "" && strpos($row2['log'], ";".$row['email']) !== false && $row2['featured'] == 1) {
+		if ($row['email'] != "" && strpos($row2['log'], ";".$row['email']) !== false) {
 			$total += 1;
 			$first = explode(':', explode(';', $row2['log'])[1])[0];
 			$second = explode(':', explode(';', $row2['log'])[2])[0];
