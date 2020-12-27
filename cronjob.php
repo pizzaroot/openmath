@@ -19,26 +19,22 @@ while ($row = mysqli_fetch_assoc($resultuser))
 	$total = 0;
 	$nid = $row['nid'];
 	$nickname = mysqli_real_escape_string($conn, $row['nickname']);
-	$email = $row['email'];
 	while ($row2 = mysqli_fetch_assoc($result))
 	{
-		if ($row['email'] != "" && strpos($row2['log'], ";".$row['email']) !== false && $row['email'] != $row2['email']) {
+		if ($row['email'] != "" && strpos($row2['log'], ";".$row['email']) !== false && $row['nid'] != $row2['nid']) {
 			$total += 1;
-			$first = explode(':', explode(';', $row2['log'])[1])[0];
-			$second = explode(':', explode(';', $row2['log'])[2])[0];
-			$third = explode(':', explode(';', $row2['log'])[3])[0];
-			if ($first == $row['email']) {
+			if (explode('~|~', $row2['first'])[1] == $nid) {
 				$gold += 1;
 			}
-			if ($second == $row['email']) {
+			if (explode('~|~', $row2['second'])[1] == $nid) {
 				$silver += 1;
 			}
-			if ($third == $row['email']) {
+			if (explode('~|~', $row2['third'])[1] == $nid) {
 				$bronze += 1;
 			}
 		}
 	}
-	$sql = "UPDATE problems SET madeby='$nickname' WHERE email='$email'";
+	$sql = "UPDATE problems SET madeby='$nickname' WHERE nid=$nid";
 	mysqli_query($conn, $sql) or die('?ㅋㅋ');
 	$point = 10 * $gold + 5 * $silver + 3 * $bronze + $total;
 	$sqlfinal = "UPDATE users SET gold=$gold, silver=$silver, bronze=$bronze, total=$total, point=$point WHERE nid=$nid";
