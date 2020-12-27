@@ -160,6 +160,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 			$featuredval = $row['featured'];
 			$communitystr = $row['community'];
 			$codepath = $row['code'];
+		 	$codesave = $row['save'];
             if (strlen($row['first']) > 0)
             {
                 if (strlen($row['second']) > 0)
@@ -389,7 +390,7 @@ function startsWithNumber($str) {
                     {
                         $naver_user_nickname = $row['nickname'];
                         $naver_user_email = $row['email'];
-			    $naver_user_id = $row['nid'];
+			    		$naver_user_id = $row['nid'];
 						$session_nickname = $naver_user_nickname;
                         $setvarkthx = 12230;
                     }
@@ -502,8 +503,19 @@ if ($codepath == "") {
                     echo "오답입니다. 다시 풀어보세요.<br>";
                 }
             }
-} else {
-	include_once "./special/".$codepath;
+} else if ($setvarkthx == 12230) {
+	$communitytab = true;
+	include_once "api.php";
+	$execresult = executeCode($codepath, $_GET['answer']);
+	if ($execresult->statusCode==200) {
+		$execscore = $execresult->output;
+		$codesave .= "|".$naver_user_id.",".$execscore;
+		$logstr .= ";".$naver_user_email;
+		$sql9 = "UPDATE problems SET save='$codesave', log='$logstr' WHERE id=$id";
+		$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
+	} else {
+		// script error or limit reached
+	}
 }
         }
     }
