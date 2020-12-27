@@ -207,7 +207,9 @@ if (isset($_GET['url']) && isset($_GET["answer"]))
 		}
 		if ($setvarkthx == 943) {
 			$newnickname = htmlentities(trim($_GET['nickname']));
-			
+			if (strpos($newnickname, '~|~') !== false) {
+				die('shut');
+			}
 			if (strlen($newnickname) > 30) {
 				die('닉네임 너무 길다이말이야');
 			}
