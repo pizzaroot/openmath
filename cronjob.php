@@ -1,4 +1,5 @@
 <?php
+// 유저들의 정보를 최신으로 반영하는 스크립트이다.
 include_once "connection.php";
 
 flush();
@@ -6,7 +7,7 @@ ob_flush();
 
 $sqluser = "SELECT * FROM users ORDER BY id ASC";
 $resultuser = mysqli_query($conn, $sqluser) or die('ㄹㅇㅋㅋ');
-
+// 모든 유저에 대하여 실행한다.
 while ($row = mysqli_fetch_assoc($resultuser))
 {
 	$sql = "SELECT * FROM problems WHERE featured=1 ORDER BY id ASC";
