@@ -509,8 +509,7 @@ if ($codepath == "") {
 	if ($execresult["statusCode"]==200) {
 		$execscore = $execresult["output"];
 		$codesave .= "|".$naver_user_id.",".$execscore;
-		$logstr .= ";".$naver_user_email;
-		$sql9 = "UPDATE problems SET save='$codesave', log='$logstr' WHERE id=$id";
+		$sql9 = "UPDATE problems SET save='$codesave' WHERE id=$id";
 		$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
 	} else {
 		// error
