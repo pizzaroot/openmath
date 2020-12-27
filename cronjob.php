@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_assoc($resultuser))
 	$email = $row['email'];
 	while ($row2 = mysqli_fetch_assoc($result))
 	{
-		if ($row['email'] != "" && strpos($row2['log'], ";".$row['email']) !== false) {
+		if ($row['email'] != "" && strpos($row2['log'], ";".$row['email']) !== false && $row['email'] != $row2['email']) {
 			$total += 1;
 			$first = explode(':', explode(';', $row2['log'])[1])[0];
 			$second = explode(':', explode(';', $row2['log'])[2])[0];
