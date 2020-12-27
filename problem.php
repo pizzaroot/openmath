@@ -389,6 +389,7 @@ function startsWithNumber($str) {
                     {
                         $naver_user_nickname = $row['nickname'];
                         $naver_user_email = $row['email'];
+			    $naver_user_id = $row['nid'];
 						$session_nickname = $naver_user_nickname;
                         $setvarkthx = 12230;
                     }
@@ -461,7 +462,7 @@ if ($codepath == "") {
                     else
                     {
                         $logstr .= ";" . $naver_user_email;
-                        $sql9 = "UPDATE problems SET $inrankstring='$session_nickname', correctcount=$correctcount, allcount=$allcount, log='$logstr' WHERE id=$id";
+                        $sql9 = "UPDATE problems SET $inrankstring='$session_nickname"."~|~".$naver_user_id."', correctcount=$correctcount, allcount=$allcount, log='$logstr' WHERE id=$id";
                         $result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루');
 
                     }
