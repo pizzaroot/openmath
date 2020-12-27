@@ -104,7 +104,7 @@ and is wrapped around the whole page content, except for the footer in this exam
         return $ipaddr1ess;
     }
     
-    $sql = "SELECT * FROM problems WHERE id=$id";
+    $sql = "SELECT * FROM problems WHERE id=$id AND code=''";
     $result = mysqli_query($conn, $sql) or die('?ㅋㅋ');
     if (mysqli_num_rows($result) == 0)
     {
