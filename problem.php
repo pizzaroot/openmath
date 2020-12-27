@@ -672,15 +672,15 @@ if ($codepath == "") {
     <ul class="w3-ul w3-hoverable w3-white">
       <li class="w3-padding-16">
         <span class="w3-large">1등</span><br>
-        <span><?php echo $firstname ?></span>
+        <span><?php echo explode("~|~", $firstname)[0] ?></span>
       </li>
 	  <li class="w3-padding-16">
         <span class="w3-large">2등</span><br>
-        <span><?php echo $secondname ?></span>
+        <span><?php echo explode("~|~", $secondname)[0] ?></span>
       </li>
 	  <li class="w3-padding-16">
         <span class="w3-large">3등</span><br>
-        <span><?php echo $thirdname ?></span>
+        <span><?php echo explode("~|~", $thirdname)[0] ?></span>
       </li>
     </ul>
   </div>
