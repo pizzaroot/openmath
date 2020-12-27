@@ -504,17 +504,16 @@ if ($codepath == "") {
                 }
             }
 } else if ($setvarkthx == 12230) {
-	$communitytab = true;
 	include_once "api.php";
 	$execresult = executeCode($codepath, $_GET['answer']);
-	if ($execresult->statusCode==200) {
-		$execscore = $execresult->output;
+	if ($execresult["statusCode"]==200) {
+		$execscore = $execresult["output"];
 		$codesave .= "|".$naver_user_id.",".$execscore;
 		$logstr .= ";".$naver_user_email;
 		$sql9 = "UPDATE problems SET save='$codesave', log='$logstr' WHERE id=$id";
 		$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
 	} else {
-		// script error or limit reached
+		// error
 	}
 }
         }
