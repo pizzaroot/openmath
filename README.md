@@ -5,6 +5,7 @@ Made by [Pizzaroot](https://www.youtube.com/c/Pizzaroot)
 
 **openmath**는 여러분이 필요해요!
 
+데이터베이스 구조는 problems.sql 파일 참조
 ## todo
 - 코드 최적화 (겹치는 부분 한 파일로 정리)
 - 알아보기 쉽도록 주석 추가
