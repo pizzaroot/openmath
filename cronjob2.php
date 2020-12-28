@@ -18,15 +18,24 @@ while ($row2 = mysqli_fetch_assoc($result))
 		$max = max($max, intval(explode(',', $savedata[$i])[1]));
 	}
 	$first="";
+	$cnid="";
 	for ($i=1;$i<count($savedata);$i++) {
 		if ($max == intval(explode(',', $savedata[$i])[1])) {
 			$first=explode(',', $savedata[$i])[1]."점~|~".explode(',', $savedata[$i])[0];
+			$cnid=explode(',', $savedata[$i])[0];
 			array_splice($savedata, $i, 1);
 			break;
 		}
 	}
+	for ($i=1;$i<count($savedata);$i++) {
+		if (explode(',', $savedata[$i])[0] == $cnid) {
+			array_splice($savedata, $i, 1);
+			$i--;
+		}
+	}
 	//second
 	$max = 0;
+	$cnid="";
 	for ($i=1;$i<count($savedata);$i++) {
 		$max = max($max, intval(explode(',', $savedata[$i])[1]));
 	}
@@ -34,12 +43,20 @@ while ($row2 = mysqli_fetch_assoc($result))
 	for ($i=1;$i<count($savedata);$i++) {
 		if ($max == intval(explode(',', $savedata[$i])[1])) {
 			$second=explode(',', $savedata[$i])[1]."점~|~".explode(',', $savedata[$i])[0];
+			$cnid=explode(',', $savedata[$i])[0];
 			array_splice($savedata, $i, 1);
 			break;
 		}
 	}
+	for ($i=1;$i<count($savedata);$i++) {
+		if (explode(',', $savedata[$i])[0] == $cnid) {
+			array_splice($savedata, $i, 1);
+			$i--;
+		}
+	}
 	//third
 	$max = 0;
+	$cnid="";
 	for ($i=1;$i<count($savedata);$i++) {
 		$max = max($max, intval(explode(',', $savedata[$i])[1]));
 	}
@@ -47,8 +64,15 @@ while ($row2 = mysqli_fetch_assoc($result))
 	for ($i=1;$i<count($savedata);$i++) {
 		if ($max == intval(explode(',', $savedata[$i])[1])) {
 			$third=explode(',', $savedata[$i])[1]."점~|~".explode(',', $savedata[$i])[0];
+			$cnid=explode(',', $savedata[$i])[0];
 			array_splice($savedata, $i, 1);
 			break;
+		}
+	}
+	for ($i=1;$i<count($savedata);$i++) {
+		if (explode(',', $savedata[$i])[0] == $cnid) {
+			array_splice($savedata, $i, 1);
+			$i--;
 		}
 	}
 	
