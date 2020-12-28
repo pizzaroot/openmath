@@ -507,8 +507,8 @@ if ($codepath == "") {
 	include_once "api.php";
 	$execresult = executeCode($codepath, $_GET['answer']);
 	if ($execresult["statusCode"]==200) {
-		$execscore = intval($execresult["output"]);
-		if ($execscore > 0) {
+		$execscore = $execresult["output"];
+		if (intval($execscore) > 0) {
 			$codesave .= "|".$naver_user_id.",".$execscore;
 			$sql9 = "UPDATE problems SET save='$codesave' WHERE id=$id";
 			$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
