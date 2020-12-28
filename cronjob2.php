@@ -19,7 +19,7 @@ while ($row2 = mysqli_fetch_assoc($result))
 	$first="";
 	for ($i=1;$i<count($savedata);$i++) {
 		if ($max == intval(explode(',', $savedata[$i])[1])) {
-			$first=$max."~|~".explode(',', $savedata[$i])[0];
+			$first=$max."점~|~".explode(',', $savedata[$i])[0];
 		}
 	}
 	$sql = "UPDATE problems SET first='$first' WHERE id=$rid";
