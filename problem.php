@@ -505,10 +505,10 @@ if ($codepath == "") {
             }
 } else if ($setvarkthx == 12230) {
 	include_once "api.php";
-	$execresult = executeCode($codepath, $_GET['answer']);
+	$execresult = executeCode($codepath, $_GET['answer'], $featuredval);
 	if ($execresult["statusCode"]==200) {
-		$execscore = $execresult["output"];
-		if (intval($execscore) > 0) {
+		$execscore = trim($execresult["output"]);
+		if (intval($execscore) > 0 && strpos($codesave, "|".$naver_user_id.",".$execscore) === false) {
 			$codesave .= "|".$naver_user_id.",".$execscore;
 			$sql9 = "UPDATE problems SET save='$codesave' WHERE id=$id";
 			$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
