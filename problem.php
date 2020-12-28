@@ -512,9 +512,17 @@ if ($codepath == "") {
 			$codesave .= "|".$naver_user_id.",".$execscore;
 			$sql9 = "UPDATE problems SET save='$codesave' WHERE id=$id";
 			$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
+			
+		}
+		if (intval($execscore) > 0) {
+			echo $execscore."점<br>";
+		} else if (is_numeric($execscore)) {
+			echo "0점<br>";
+		} else {
+			include_once "error.php";
 		}
 	} else {
-		// error
+		
 	}
 	include_once "cronjob2.php";
 }
