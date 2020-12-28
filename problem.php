@@ -508,12 +508,15 @@ if ($codepath == "") {
 	$execresult = executeCode($codepath, $_GET['answer']);
 	if ($execresult["statusCode"]==200) {
 		$execscore = intval($execresult["output"]);
-		$codesave .= "|".$naver_user_id.",".$execscore;
-		$sql9 = "UPDATE problems SET save='$codesave' WHERE id=$id";
-		$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
+		if ($execscore > 0) {
+			$codesave .= "|".$naver_user_id.",".$execscore;
+			$sql9 = "UPDATE problems SET save='$codesave' WHERE id=$id";
+			$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
+		}
 	} else {
 		// error
 	}
+	include_once "cronjob2.php";
 }
         }
     }

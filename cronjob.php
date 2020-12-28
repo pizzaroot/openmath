@@ -5,6 +5,8 @@ include_once "connection.php";
 flush();
 ob_flush();
 
+
+
 $sqluser = "SELECT * FROM users ORDER BY id ASC";
 $resultuser = mysqli_query($conn, $sqluser) or die('ㄹㅇㅋㅋ');
 // 모든 유저에 대하여 실행한다.
@@ -21,8 +23,11 @@ while ($row = mysqli_fetch_assoc($resultuser))
 	$nickname = mysqli_real_escape_string($conn, $row['nickname']);
 	while ($row2 = mysqli_fetch_assoc($result))
 	{
-		if ($row['email'] != "" && strpos($row2['log'], ";".$row['email']) !== false && $row['nid'] != $row2['nid']) {
-			$total += 1;
+		if ($row['email'] != "" && (strpos($row2['log'], ";".$row['email']) !== false || $row2['code'] != "") && $nid != $row2['nid']) {
+			if (strpos($row2['log'], ";".$row['email']) !== false || strpos($row2['save'], "|".$nid) !== false){
+				$total += 1;
+			}
+			
 			if (explode('~|~', $row2['first'])[1] == $nid) {
 				$gold += 1;
 			}
