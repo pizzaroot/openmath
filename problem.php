@@ -511,9 +511,7 @@ if ($codepath == "") {
 		if (intval($execscore) > 0 && strpos($codesave, "|".$naver_user_id.",".$execscore) === false) {
 			$codesave .= "|".$naver_user_id.",".$execscore;
 			$sql9 = "UPDATE problems SET save='$codesave' WHERE id=$id";
-			$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');
-			$sql9 = "UPDATE users SET lastjudge=".time()." WHERE nid=$naver_user_id";
-			$result = mysqli_query($conn, $sql9) or die('?ㅋㅋe3루');
+			$result = mysqli_query($conn, $sql9) or die('?ㅋㅋ루e');			
 		}
 		if (intval($execscore) > 0) {
 			echo $execscore."점<br>";
@@ -525,6 +523,8 @@ if ($codepath == "") {
 	} else {
 		
 	}
+	$sql10 = "UPDATE users SET lastjudge=".time()." WHERE nid=$naver_user_id";
+	$result = mysqli_query($conn, $sql10) or die('?ㅋㅋe3루');
 	include_once "cronjob2.php";
 }
         }
